@@ -418,4 +418,4 @@ async def on_message(message):
 		embed = discord.Embed(title="Command: -credits",description='**Description:** Displays the bots info \n **Cooldown:** No cooldown \n **Usage:** -credits', color= 0x546E7A)
 		await client.send_message(message.channel, embed=embed)
 
-client.run(str(os.environ.get('BOT_TOKEN')))
+client.run("NjAzOTA2Mjc0MjAzMTQwMTM0.XT8DXA.bdP7zVo9S8l5DIIsZMlmsy8nMyA")
