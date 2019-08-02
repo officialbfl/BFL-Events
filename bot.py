@@ -11,13 +11,6 @@ client = commands.Bot(command_prefix = "-")
 
 
 @client.event
-async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')	
-
-@client.event
 async def on_message(message):
 	if message.content.upper().startswith('-SAY'):
 	 if message.author.id == "562000458181246982" or message.author.id == "571047409262788618":
@@ -26,7 +19,7 @@ async def on_message(message):
 			await client.delete_message(message)
 
 
-@client.event
+
 async def on_message(message):
 	if message.content.startswith('-help') and message.content[5:] =="": 
 		embed = discord.Embed(title=":scroll:__BFL Help__",description='', color=0x3D59AB)
@@ -216,143 +209,8 @@ async def on_message(message):
 
 
 
-#____________________________________________________________ONLY COMMAND__
-@client.event
-async def on_member_join(member):
-	channel = member.server.get_channel("570716949554659328")
-	embed = discord.Embed(title="", description="Welcome {0} to the **Bonk.io Football League** Discord! \n Read <#570206053686575106> first.".format(member), color=0x3D59AB)
-	embed.set_thumbnail(url=member.avatar_url)
-	embed.set_author(name="New Member!", icon_url=member.avatar_url)
-	xd = member.id
-	embed.set_footer(text="User ID: " +xd)
-	await client.send_message(channel, embed=embed)
-#____________________________________________________________ONLY COMMAND__
 
-@client.event
-async def on_member_join(member):
-	channel = member.server.get_channel("570716949554659328")
-	embed = discord.Embed(title="", description="{0} {1}".format(member.mention, member), color=0x7ED060)
-	embed.set_thumbnail(url=member.avatar_url)
-	embed.set_author(name="Member Joined", icon_url=member.avatar_url)
-	txt = member.id
-	xd = " | Joined: "
-	hoho = member.joined_at.__format__('%d. %B %Y %H:%M:%S')
-	embed.set_footer(text="ID: "+txt +xd +hoho)
-	await client.send_message(channel, embed=embed)
 
-@client.event
-async def on_message_delete(message):
-	channel = client.get_channel('566646862812282890')
-	idk = message.content
-	eh = "\n"
-	embed = discord.Embed(title="", description="Message sent by {0} deleted in {1}".format(message.author.mention, message.channel.mention +eh +idk), color=0xEA1025)
-	embed.set_author(name=message.author, icon_url=message.author.avatar_url)
-	txt = message.author.id
-	xd = " | Message ID: "
-	huh = message.id
-	embed.set_footer(text="User ID: "+txt +xd +huh)
-	await client.send_message(channel, embed=embed)
-
-@client.event
-async def on_message_edit(before, after):
-	channel = client.get_channel('566646862812282890')
-	idk = before.content
-	eh = after.content
-	embed = discord.Embed(title="", description="Message edited by {0} in {1}".format(before.author.mention, before.channel.mention), color=0x6A7A94)
-	embed.add_field(name="Before", value=idk, inline=False)
-	embed.add_field(name="After", value=eh, inline=False)
-	embed.set_author(name=before.author, icon_url=before.author.avatar_url)
-	embed.set_thumbnail(url=before.author.avatar_url)
-	txt = before.author.id
-	xd = " | Message ID: "
-	huh = before.id
-	embed.set_footer(text="User ID: "+txt +xd +huh)
-	await client.send_message(channel, embed=embed)
-
-@client.event
-async def on_channel_create(channel):
-	channell = client.get_channel('566646862812282890')
-	hi = channel.name
-	embed = discord.Embed(title="", description="", color=0x7ED060)
-	embed.add_field(name="Channel Created:", value=hi)
-	embed.set_author(name=channel.server.name, icon_url=channel.server.icon_url)
-	huh = channel.id
-	embed.set_footer(text="Channel ID: "+huh)
-	await client.send_message(channell, embed=embed)
-
-@client.event
-async def on_channel_delete(channel):
-	channell = client.get_channel('566646862812282890')
-	hi = channel.name
-	embed = discord.Embed(title="", description="", color=0xEA1025)
-	embed.add_field(name="Channel Deleted:", value=hi)
-	embed.set_author(name=channel.server.name, icon_url=channel.server.icon_url)
-	huh = channel.id
-	embed.set_footer(text="Channel ID: "+huh)
-	await client.send_message(channell, embed=embed)
-
-@client.event
-async def on_server_role_create(role):
-	channell = client.get_channel('566646862812282890')
-	idk = role.name
-	embed = discord.Embed(title="Role Created", description=idk, color=0x7ED060)
-	embed.set_author(name=role.server.name, icon_url=role.server.icon_url)
-	huh = role.id
-	embed.set_footer(text="Role ID: "+huh)
-	await client.send_message(channell, embed=embed)
-
-@client.event
-async def on_server_role_delete(role):
-	channell = client.get_channel('566646862812282890')
-	idk = role.name
-	embed = discord.Embed(title="Role Deleted", description=idk, color=0xEA1025)
-	embed.set_author(name=role.server.name, icon_url=role.server.icon_url)
-	huh = role.id
-	embed.set_footer(text="Role ID: "+huh)
-	await client.send_message(channell, embed=embed)
-
-@client.event
-async def on_member_ban(member):
-	channell = client.get_channel('566646862812282890')
-	embed = discord.Embed(title="", description="{0} {1}".format(member.mention, member), color=0xEA1025)
-	embed.set_author(name="Member Banned", icon_url=member.avatar_url)
-	embed.set_thumbnail(url=member.avatar_url)
-	lol = member.id
-	embed.set_footer(text="ID: " +lol)
-	await client.send_message(channell, embed=embed)
-
-@client.event
-async def on_member_unban(server, user):
-	channell = client.get_channel('566646862812282890')
-	embed = discord.Embed(title="", description="{0} {1}".format(user.mention, user), color=0x337FD5)
-	embed.set_author(name="Member Unbanned", icon_url=user.avatar_url)
-	embed.set_thumbnail(url=user.avatar_url)
-	lol = user.id
-	embed.set_footer(text="ID: " +lol)
-	await client.send_message(channell, embed=embed)
-
-@client.event
-async def on_member_update(before, after):
-	channell = client.get_channel('555088719066038292')
-	hehe = before.nick
-	huhu = after.nick
-	hihi = before.game
-	xd = after.game
-	omg = before.status
-	wtf = after.status
-	embed = discord.Embed(title="", description="{0} **Member Updated**".format(before.mention), color=0x337FD5)
-	embed.add_field(name="Name Before", value=hehe, inline=False)
-	embed.add_field(name="Name After", value=huhu, inline=False)
-	embed.add_field(name="Game Before", value=hihi, inline=False)
-	embed.add_field(name="Game After", value=xd, inline=False)
-	embed.add_field(name="Status Before", value=omg, inline=False)
-	embed.add_field(name="Status After", value=wtf, inline=False)
-	embed.set_author(name=before, icon_url=before.avatar_url)
-	lol = before.id
-	embed.set_footer(text="ID: " +lol)
-	await client.send_message(channell, embed=embed)
-
-@client.event
 async def on_message(message):
 	if message.content.startswith('-help ping'):
 		embed = discord.Embed(title="Command: -ping",description='**Description:** Pings the bot \n **Cooldown:** No cooldown \n **Usage:** -ping', color= 0x546E7A)
